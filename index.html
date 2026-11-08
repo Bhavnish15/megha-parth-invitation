@@ -53,59 +53,79 @@ html.js .rv:not(.in) { opacity: .25; transform: translateY(22px); }
 
 /* ============ INTRO ============ */
 #intro { position: fixed; inset: 0; z-index: 100; color: var(--gold-hi); overflow: hidden; }
-.pn { position: absolute; top: 0; bottom: 0; width: 50.3%; background-image: radial-gradient(80% 62% at 50% 38%, #6A1B33 0%, #4A0F22 55%, #2E0816 100%); background-size: 200% 100%; transition: transform 1.6s cubic-bezier(.65, 0, .2, 1); }
-.pn.l { left: 0; background-position: 0 0; }
-.pn.r { right: 0; background-position: 100% 0; }
-.pn::after { content: ""; position: absolute; top: 0; bottom: 0; width: 1px; background: linear-gradient(transparent, rgba(231, 206, 143, .7), transparent); }
-.pn.l::after { right: 0; } .pn.r::after { left: 0; }
+.pn { position: absolute; top: 0; bottom: 0; width: 50.3%; overflow: hidden; background: radial-gradient(90% 60% at 50% 25%, #3A2C2C 0%, #251B1C 55%, #140E0F 100%); transition: transform 1.6s cubic-bezier(.65, 0, .2, 1); }
+.pn.l { left: 0; } .pn.r { right: 0; }
+.pn .in { position: absolute; top: 0; bottom: 0; width: 198.8%; }
+.pn.l .in { left: 0; } .pn.r .in { right: 0; }
+.pn .in::after { content: ""; position: absolute; inset: 0; background: radial-gradient(120% 85% at 50% 58%, rgba(0, 0, 0, 0) 38%, rgba(10, 6, 6, .55) 100%); }
+.art { position: absolute; left: 50%; bottom: 0; width: min(100%, 520px); height: min(68dvh, calc(min(100vw, 520px) * 1.288)); transform: translateX(-50%); overflow: hidden; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 34%), linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent); -webkit-mask-composite: source-in; mask-image: linear-gradient(180deg, transparent 0, #000 34%), linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent); mask-composite: intersect; }
+.art img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 100%; filter: brightness(.6) saturate(.9); }
+.art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14, 9, 9, 0) 45%, rgba(14, 9, 9, .55) 100%); }
 .opened .pn.l { transform: translateX(-102%); }
 .opened .pn.r { transform: translateX(102%); }
 .stars i { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: var(--gold-hi); opacity: .15; animation: tw 3.6s ease-in-out infinite; }
-@keyframes tw { 50% { opacity: .8; transform: scale(1.7); } }
-.ic { position: absolute; inset: 0; display: grid; justify-items: center; align-content: center; gap: 14px; text-align: center; padding: max(20px, env(safe-area-inset-top, 0px)) 16px max(20px, env(safe-area-inset-bottom, 0px)); transition: opacity .7s, transform .9s cubic-bezier(.5, 0, .3, 1); }
-.opened .ic { opacity: 0; transform: scale(.94); pointer-events: none; }
-.ic .caps { color: #E2B9A8; letter-spacing: .34em; font-size: 12.5px; }
-.nm { display: grid; justify-items: center; gap: 0; color: #FBEFE4; }
-.nm .script { font-size: clamp(46px, 7.4dvh, 66px); color: #FBEFE4; }
-.nm .amp { font-family: var(--f-script); font-size: 30px; color: var(--gold-hi); line-height: 1; margin: 2px 0 0; }
-.cam-stage { position: relative; width: 150px; height: 244px; margin-top: 4px; }
-.strip { position: absolute; left: 50%; bottom: 96px; width: 80px; margin-left: -40px; padding: 5px 6px 7px; background: #FBF5EA; box-shadow: 0 6px 18px rgba(0, 0, 0, .4); transform: translateY(86px) rotate(-1deg); animation: print 2.6s cubic-bezier(.3, .7, .2, 1) .5s forwards, bob 5s ease-in-out 3.2s infinite alternate; text-align: center; }
-@keyframes print { to { transform: translateY(0) rotate(-1.5deg); } }
-@keyframes bob { from { transform: translateY(0) rotate(-1.5deg); } to { transform: translateY(-4px) rotate(1deg); } }
-.strip .cp { font-family: var(--f-hand); font-size: 11.5px; line-height: 1.1; color: #5A3A3F; padding: 1px 0 4px; }
-.fr { position: relative; width: 100%; aspect-ratio: 4 / 3; background: #3a2a2e; margin-bottom: 4px; overflow: hidden; }
-.fr img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.4s ease; }
-.fr img.on { opacity: 1; }
-.cam { position: absolute; left: 0; bottom: 0; width: 150px; height: auto; filter: drop-shadow(0 14px 14px rgba(0, 0, 0, .45)); }
-.seal { position: relative; width: 96px; height: 96px; border: 0; border-radius: 50%; padding: 0; display: grid; place-items: center; background: radial-gradient(circle at 35% 28%, #F6E7B0 0%, #C9A24D 46%, #8A6522 100%); box-shadow: 0 0 0 8px rgba(201, 162, 77, .13), 0 12px 30px rgba(0, 0, 0, .5), inset 0 2px 3px rgba(255, 255, 255, .55), inset 0 -4px 7px rgba(90, 60, 10, .55); animation: sealp 3s ease-in-out infinite; transition: transform .5s cubic-bezier(.4, 0, .2, 1), opacity .5s; }
-.seal::before { content: ""; position: absolute; inset: 10px; border-radius: 50%; border: 1.5px solid rgba(255, 244, 205, .75); background: radial-gradient(circle at 40% 34%, #F7EBC1, #D3B160 72%); box-shadow: inset 0 2px 6px rgba(90, 60, 10, .4); }
-.seal span { position: relative; font-family: var(--f-script); font-size: 34px; color: #7A5518; text-shadow: 0 1px 0 rgba(255, 255, 255, .6); line-height: 1; }
-@keyframes sealp { 50% { box-shadow: 0 0 0 14px rgba(201, 162, 77, .06), 0 12px 34px rgba(0, 0, 0, .5), inset 0 2px 3px rgba(255, 255, 255, .55), inset 0 -4px 7px rgba(90, 60, 10, .55); } }
+@keyframes tw { 50% { opacity: .85; transform: scale(1.8); } }
+.ic { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center; padding: max(70px, calc(env(safe-area-inset-top, 0px) + 50px)) max(30px, env(safe-area-inset-right, 0px)) max(30px, calc(env(safe-area-inset-bottom, 0px) + 14px)) max(30px, env(safe-area-inset-left, 0px)); transition: opacity .7s, transform .9s cubic-bezier(.5, 0, .3, 1); }
+.opened .ic { opacity: 0; transform: scale(.95); pointer-events: none; }
+.frame { position: absolute; inset: max(12px, env(safe-area-inset-top, 0px)) 12px 12px; border: 1px solid rgba(231, 206, 143, .5); pointer-events: none; opacity: 0; animation: fin 2s ease .4s forwards; }
+.frame::before { content: ""; position: absolute; inset: 5px; border: 1px solid rgba(231, 206, 143, .22); }
+.frame i { position: absolute; width: 22px; height: 22px; border: 2px solid var(--gold-hi); }
+.frame i:nth-child(1) { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
+.frame i:nth-child(2) { top: -2px; right: -2px; border-left: 0; border-bottom: 0; }
+.frame i:nth-child(3) { bottom: -2px; left: -2px; border-right: 0; border-top: 0; }
+.frame i:nth-child(4) { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
+@keyframes fin { to { opacity: 1; } }
+.ipet { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.ipet i { position: absolute; top: -26px; width: var(--s); height: calc(var(--s) * 1.5); background: var(--c); border-radius: 80% 0 80% 0; opacity: 0; animation: fall var(--t) linear infinite; animation-delay: var(--d); }
+@keyframes fall { 0% { opacity: 0; transform: translate(0, 0) rotate(0); } 8% { opacity: .85; } 100% { opacity: .7; transform: translate(var(--x), 108dvh) rotate(560deg); } }
+.top { display: grid; justify-items: center; gap: 10px; }
+.rise { opacity: 0; transform: translateY(18px); animation: rise 1.3s cubic-bezier(.2, .7, .2, 1) forwards; animation-delay: var(--d, 0s); }
+@keyframes rise { to { opacity: 1; transform: none; } }
+.ic .caps { color: #EADBC2; letter-spacing: .36em; font-size: 12.5px; text-shadow: 0 1px 10px rgba(20, 4, 10, .6); }
+.nm { display: grid; justify-items: center; gap: 0; margin: 0; font-weight: 400; }
+.nm .script { font-size: clamp(54px, min(17.5vw, 9.4dvh), 82px); line-height: 1.02; background: linear-gradient(100deg, #FFF3E2 38%, #F6DE9A 50%, #FFF3E2 62%) 0 0 / 250% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; filter: drop-shadow(0 2px 12px rgba(20, 4, 10, .55)); animation: shine 6s linear infinite; }
+.nm .script.n2 { animation-delay: -1.2s; }
+@keyframes shine { from { background-position: 125% 0; } to { background-position: -125% 0; } }
+.weds { display: flex; align-items: center; gap: 12px; margin: 2px 0 0; font-family: var(--f-script); font-size: clamp(30px, 8.4vw, 38px); line-height: 1; color: var(--gold-hi); text-shadow: 0 2px 12px rgba(20, 4, 10, .6); }
+.weds::before, .weds::after { content: ""; width: 34px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-hi)); }
+.weds::after { background: linear-gradient(270deg, transparent, var(--gold-hi)); }
+.dts { font-weight: 500; letter-spacing: .32em; text-transform: uppercase; font-size: 13px; color: #F4E3C4; padding-left: .32em; text-shadow: 0 1px 10px rgba(20, 4, 10, .7); }
+.bot { display: grid; justify-items: center; gap: 12px; }
+.sealw { position: relative; width: 100px; height: 100px; }
+.sealw i { position: absolute; inset: 0; border-radius: 50%; border: 1.5px solid rgba(231, 206, 143, .6); animation: ripple 3.2s ease-out infinite; }
+.sealw i:nth-child(2) { animation-delay: 1.6s; }
+@keyframes ripple { from { transform: scale(1); opacity: .7; } to { transform: scale(2.1); opacity: 0; } }
+.seal { position: relative; width: 100px; height: 100px; border: 0; border-radius: 50%; padding: 0; display: grid; place-items: center; background: radial-gradient(circle at 34% 28%, #EFD791 0%, #CBA045 58%, #9C7425 100%); box-shadow: 0 0 0 7px rgba(201, 162, 77, .14), 0 12px 28px rgba(0, 0, 0, .55), inset 0 1.5px 2px rgba(255, 255, 255, .6), inset 0 -3px 5px rgba(90, 60, 10, .45); transition: transform .5s cubic-bezier(.4, 0, .2, 1), opacity .5s; }
+.seal::before { content: ""; position: absolute; inset: 8px; border-radius: 50%; background: radial-gradient(circle at 40% 32%, #FFFBF0 0%, #F1E8D4 70%, #DCCDAE 100%); box-shadow: inset 0 0 0 2px #D2B15C, inset 0 3px 6px rgba(120, 90, 30, .3); }
+.seal span { position: relative; font-family: var(--f-script); font-size: 38px; color: #A47A2A; line-height: 1; padding-top: 3px; }
 .seal:active { transform: scale(.93); }
 .opening .seal { transform: scale(1.25); opacity: 0; }
-.tapl { font-style: italic; font-size: 19px; color: #E8CFA0; letter-spacing: .04em; }
-@media (max-height: 700px) { .cam-stage { transform: scale(.78); margin: -26px 0; } .ic { gap: 8px; } }
-
+.tapl { font-style: italic; font-size: 20px; color: #F6E6C6; letter-spacing: .06em; text-shadow: 0 1px 12px rgba(20, 4, 10, .9); animation: tapp 2.4s ease-in-out infinite; }
+@keyframes tapp { 50% { opacity: .55; } }
+@media (max-height: 720px) { .sealw, .seal { width: 84px; height: 84px; } .seal span { font-size: 32px; } .top { gap: 6px; } }
 /* ============ COVER ============ */
-.cover { position: relative; max-width: 480px; margin: 0 auto; height: min(100svh, 940px); min-height: 640px; overflow: hidden; background: #2a2020; }
-.cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 24%; transform: scale(1.12); transition: transform 7s cubic-bezier(.2, .6, .2, 1); }
-.go .cover img { transform: scale(1); }
-.cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(246, 240, 230, 0) 46%, rgba(246, 240, 230, .72) 66%, #F6F0E6 84%); }
-.cv { position: absolute; z-index: 2; left: 0; right: 0; bottom: max(22px, 3.2dvh); padding: 0 20px; display: grid; justify-items: center; gap: 8px; text-align: center; }
-.cv .caps { font-size: 11.5px; letter-spacing: .3em; color: #8B6A4E; }
-.cv h1 { margin: 0; font-weight: 500; text-transform: uppercase; letter-spacing: .2em; font-size: clamp(34px, 11.2vw, 52px); line-height: 1.12; color: var(--wine); padding-left: .2em; }
+.band.covb { background: #EBBF85; }
+.cover { max-width: 440px; margin: 0 auto; padding: 0 0 4px; }
+.cimg { position: relative; line-height: 0; }
+.cimg img { display: block; width: 100%; height: auto; opacity: 0; transform: translateY(16px); transition: opacity 1.2s ease .1s, transform 1.2s cubic-bezier(.2, .7, .2, 1) .1s; }
+.go .cimg img { opacity: 1; transform: none; }
+.cvm { position: absolute; top: 12px; left: 50%; width: 50px; height: 50px; margin-left: -25px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 40% 28%, #6A1B33, #35091A); box-shadow: 0 0 0 1.5px #E7CE8F, 0 6px 14px rgba(40, 8, 20, .35); }
+.cvm svg { width: 30px; height: auto; margin-top: 2px; }
+.cv { display: grid; justify-items: center; gap: 8px; text-align: center; padding: 20px 20px 34px; }
+.cv .caps { font-size: 11.5px; letter-spacing: .3em; color: #5E4129; }
+.cv h1 { margin: 0; font-weight: 500; text-transform: uppercase; letter-spacing: .2em; font-size: clamp(30px, 9.6vw, 44px); line-height: 1.12; color: var(--wine); padding-left: .2em; }
 .cv .and { display: flex; align-items: center; gap: 12px; width: 100%; }
-.cv .and::before, .cv .and::after { content: ""; flex: 1; height: 1px; background: var(--gold); opacity: .7; }
-.cv .and span { font-family: var(--f-script); font-size: 46px; line-height: .9; color: var(--wine); }
+.cv .and::before, .cv .and::after { content: ""; flex: 1; height: 1px; background: #8A6420; opacity: .6; }
+.cv .and span { font-family: var(--f-script); font-size: 42px; line-height: .9; color: var(--wine); }
 .cv .inv { margin-top: 4px; }
-.cue { margin-top: 10px; width: 20px; height: 32px; border: 1.5px solid var(--gold); border-radius: 12px; position: relative; opacity: .8; }
-.cue::after { content: ""; position: absolute; left: 50%; top: 6px; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 2px; background: var(--gold); animation: cue 1.8s ease-in-out infinite; }
+.cue { margin-top: 10px; width: 20px; height: 32px; border: 1.5px solid #8A6420; border-radius: 12px; position: relative; opacity: .8; }
+.cue::after { content: ""; position: absolute; left: 50%; top: 6px; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 2px; background: #8A6420; animation: cue 1.8s ease-in-out infinite; }
 @keyframes cue { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(12px); } }
 
 /* ============ BLESSING ============ */
 .bless { padding-block: 54px 58px; text-align: center; }
 .bless .col { display: grid; justify-items: center; gap: 14px; }
-.med { width: 92px; aspect-ratio: 1; padding: 4px; border: 0; border-radius: 50%; background: conic-gradient(from 20deg, #E7CE8F, #B88F3F, #F4E3B6, #B88F3F, #E7CE8F); box-shadow: 0 0 0 7px rgba(255, 255, 255, .08), 0 10px 30px rgba(0, 0, 0, .4); animation: glow 4.2s ease-in-out infinite alternate; }
+.med { width: 80px; aspect-ratio: 1; padding: 4px; border: 0; border-radius: 50%; background: conic-gradient(from 20deg, #E7CE8F, #B88F3F, #F4E3B6, #B88F3F, #E7CE8F); box-shadow: 0 0 0 7px rgba(255, 255, 255, .08), 0 10px 30px rgba(0, 0, 0, .4); animation: glow 4.2s ease-in-out infinite alternate; }
 .med img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 @keyframes glow { from { box-shadow: 0 0 0 7px rgba(255, 255, 255, .06), 0 8px 22px rgba(0, 0, 0, .4); } to { box-shadow: 0 0 0 9px rgba(231, 206, 143, .16), 0 8px 40px rgba(231, 206, 143, .5); } }
 .med:active { transform: scale(.94); }
@@ -119,25 +139,24 @@ html.js .rv:not(.in) { opacity: .25; transform: translateY(22px); }
 .bless blockquote { margin: 10px 0 0; font-style: italic; font-size: clamp(22px, 6.2vw, 26px); line-height: 1.4; color: #FBEFE4; text-wrap: balance; max-width: 22ch; }
 .dt { font-weight: 500; letter-spacing: .32em; text-transform: uppercase; font-size: 15px; color: var(--gold-hi); margin-top: 4px; }
 
-/* ============ NOTE ============ */
-.note { padding-block: 56px 60px; text-align: center; }
-.note .col { display: grid; gap: 22px; justify-items: center; }
-.paper { position: relative; width: 100%; padding: 40px 28px 30px; color: #5A3A2A; background: radial-gradient(120% 90% at 30% 20%, #F7EBC9 0%, #EAD6A4 70%, #D9BF86 100%); box-shadow: 0 22px 44px rgba(90, 50, 20, .25), inset 0 0 40px rgba(150, 100, 40, .25); rotate: -.8deg; clip-path: polygon(0 1%, 4% 0, 9% 1.2%, 15% 0, 22% 1%, 30% 0, 38% 1.2%, 46% 0, 54% 1%, 62% 0, 70% 1.2%, 78% 0, 86% 1%, 93% 0, 100% 1%, 99% 8%, 100% 16%, 99.2% 25%, 100% 34%, 99% 45%, 100% 56%, 99.2% 67%, 100% 78%, 99% 89%, 100% 100%, 94% 99%, 87% 100%, 80% 98.8%, 72% 100%, 64% 99%, 56% 100%, 47% 98.8%, 39% 100%, 30% 99%, 22% 100%, 14% 98.8%, 7% 100%, 0 99%, 1% 90%, 0 80%, 1% 70%, 0 60%, 1% 50%, 0 40%, 1% 30%, 0 20%, 1% 10%); }
-.pin { position: absolute; z-index: 2; top: -9px; left: 50%; width: 26px; height: 26px; margin-left: -13px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #F2DFA2, #B88F3F 60%, #7A5518); box-shadow: 0 6px 10px rgba(0, 0, 0, .35); }
-.paper .script { font-size: 44px; color: #5A3A2A; margin-bottom: 12px; }
-.paper p { margin: 0; font-family: var(--f-hand); font-weight: 500; font-size: 21px; line-height: 1.55; text-align: left; }
-.paper .by { margin-top: 14px; text-align: right; font-size: 22px; }
+/* ============ STORY ============ */
+.story { background: #FCD69C; color: #4A2A24; padding-block: 52px 0; overflow: hidden; }
+.story .col { text-align: left; }
+.story .caps { font-size: 11.5px; letter-spacing: .3em; color: #6B4A1E; }
+.story h2 { font-size: clamp(46px, 13.5vw, 56px); color: var(--wine); margin: 4px 0 12px; white-space: nowrap; }
+.tale { max-width: 29ch; }
+.tale p { margin: 0 0 12px; font-style: italic; font-size: 19px; line-height: 1.42; color: #4A2A24; }
+.tale .sg { font-family: var(--f-script); font-style: normal; font-size: 30px; color: var(--wine); margin: 4px 0 0; }
+.sart { max-width: 480px; margin: -6px auto 0; line-height: 0; }
+.sart img { display: block; width: 100%; height: auto; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 16%), linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); -webkit-mask-composite: source-in; mask-image: linear-gradient(180deg, transparent 0, #000 16%), linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-composite: intersect; }
 
 /* ============ CELEBRATIONS ============ */
 .cel { padding-block: 58px 62px; text-align: center; }
 .cel h2 { font-size: clamp(46px, 14vw, 60px); color: var(--gold-hi); margin: 10px 0 30px; }
 .cards { display: grid; gap: 26px; }
 .card { background: var(--paper); color: var(--ink); border-radius: 22px; overflow: hidden; box-shadow: 0 18px 40px rgba(0, 0, 0, .35); }
-.ph { position: relative; overflow: hidden; aspect-ratio: 4 / 3; background: #d9c9bd; }
-.ph img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); transition: transform 5s cubic-bezier(.2, .6, .2, 1); }
-.card.in .ph img { transform: scale(1); }
-.ph::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, rgba(40, 8, 20, .35)); }
-.ph .tag { position: absolute; z-index: 2; left: 14px; top: 12px; font-size: 12px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; color: #FFF6E6; text-shadow: 0 1px 8px rgba(0, 0, 0, .6); }
+.ph { display: flex; justify-content: center; padding: 22px 18px 0; }
+.ph img { width: 224px; aspect-ratio: 4 / 5; height: auto; object-fit: cover; border-radius: 112px 112px 16px 16px; box-shadow: 0 0 0 2px #fff, 0 0 0 3.5px var(--gold), 0 10px 22px rgba(60, 20, 30, .25); background: #e6d9c8; }
 .cb { padding: 20px 18px 24px; display: grid; gap: 4px; justify-items: center; }
 .cb .script { font-size: 50px; color: var(--wine); }
 .cb .day { font-weight: 500; font-size: 21px; color: var(--ink); }
@@ -161,22 +180,13 @@ html.js .rv:not(.in) { opacity: .25; transform: translateY(22px); }
 /* ============ GLIMPSES ============ */
 .glim { padding-block: 58px 66px; text-align: center; overflow: hidden; }
 .glim h2 { font-size: clamp(46px, 14vw, 60px); color: var(--gold-hi); margin: 10px 0 14px; }
+.pol { position: relative; flex: none; width: 190px; margin-right: 20px; padding: 8px 8px 40px; border-radius: 3px; background: #FBF6EC; box-shadow: 0 14px 30px rgba(0, 0, 0, .42); rotate: -2.4deg; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+.pol:nth-child(even) { rotate: 2.2deg; translate: 0 12px; }
+.pol img { width: 100%; aspect-ratio: 1 / 1; object-fit: contain; background: #EFE6D4; border-radius: 2px; pointer-events: none; -webkit-user-drag: none; }
+.pol span { position: absolute; left: 8px; right: 8px; bottom: 9px; font-family: var(--f-hand); font-size: 21px; line-height: 1.1; color: #5A3A3F; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .reel { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent); mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent); }
-.reel + .reel { margin-top: -8px; }
-.trk { display: flex; width: max-content; padding: 20px 0 34px; animation: marq var(--dur, 110s) linear infinite; will-change: transform; }
-.reel.rev .trk { animation-direction: reverse; }
+.trk { display: flex; width: max-content; padding: 26px 0 40px; animation: marq var(--dur, 130s) linear infinite; will-change: transform; }
 @keyframes marq { to { transform: translateX(-50%); } }
-.reel:hover .trk, .reel:focus-within .trk, .reel.hold .trk { animation-play-state: paused; }
-.pol { position: relative; flex: none; width: 152px; margin-right: 18px; padding: 7px 7px 36px; border: 0; border-radius: 3px; background: #FBF6EC; box-shadow: 0 12px 26px rgba(0, 0, 0, .4); rotate: -2.6deg; transition: transform .4s cubic-bezier(.3, .8, .3, 1); }
-.pol:nth-child(even) { rotate: 2.4deg; translate: 0 10px; }
-.pol:hover, .pol:focus-visible { transform: translateY(-6px) scale(1.04); }
-.pol img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; background: #d9c9bd; border-radius: 2px; }
-.pol span { position: absolute; left: 6px; right: 6px; bottom: 6px; font-family: var(--f-hand); font-size: 20px; line-height: 1.1; color: #5A3A3F; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.lb { position: fixed; inset: 0; z-index: 150; display: grid; place-items: center; padding: 20px; background: rgba(30, 5, 12, .92); opacity: 0; transition: opacity .35s; }
-.lb.on { opacity: 1; }
-.lb img { max-width: 100%; max-height: 88dvh; border-radius: 8px; box-shadow: 0 30px 80px rgba(0, 0, 0, .5); transform: scale(.92); transition: transform .45s cubic-bezier(.3, .8, .3, 1); }
-.lb.on img { transform: scale(1); }
-.lb button { position: absolute; top: max(14px, env(safe-area-inset-top, 0px)); right: max(14px, env(safe-area-inset-right, 0px)); width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--gold-hi); background: transparent; color: var(--gold-hi); font-size: 24px; line-height: 1; }
 
 /* ============ RSVP ============ */
 .rsvp { padding-block: 58px 60px; text-align: center; }
@@ -248,6 +258,34 @@ input:focus, textarea:focus { outline: 2px solid var(--gold); outline-offset: 1p
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <symbol id="div" viewBox="0 0 170 18"><path d="M0 9h64M106 9h64" stroke="currentColor" stroke-width="1" fill="none"/><path d="M85 1l5 8-5 8-5-8z" fill="currentColor"/><circle cx="71" cy="9" r="2" fill="currentColor"/><circle cx="99" cy="9" r="2" fill="currentColor"/></symbol>
+    <symbol id="gan" viewBox="0 0 200 222"><defs><linearGradient id="gg" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="222"><stop offset="0" stop-color="#F6E2A6"/><stop offset=".55" stop-color="#D9B462"/><stop offset="1" stop-color="#B88F3F"/></linearGradient></defs>
+<g fill="rgba(231,206,143,.10)" stroke="url(#gg)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="100" cy="82" r="56" fill="none"/>
+  <circle cx="100" cy="82" r="62" fill="none" stroke-width=".9" stroke-dasharray="1 5"/>
+  <path d="M78 46 L82 28 L90 36 L100 14 L110 36 L118 28 L122 46 Z"/>
+  <path d="M78 46 Q100 53 122 46" fill="none"/>
+  <circle cx="100" cy="30" r="2.2" fill="#F6E2A6"/>
+  <path d="M74 60 C50 40 30 58 34 84 C37 104 62 106 76 88 Z"/>
+  <path d="M126 60 C150 40 170 58 166 84 C163 104 138 106 124 88 Z"/>
+  <path d="M46 66 C42 80 48 90 60 92" fill="none" stroke-width="1"/>
+  <path d="M154 66 C158 80 152 90 140 92" fill="none" stroke-width="1"/>
+  <ellipse cx="100" cy="70" rx="27" ry="25"/>
+  <path d="M100 52 L100 60 M94 56 L106 56" fill="none" stroke-width="1.3"/>
+  <path d="M88 67 Q92 63.500 96 67 M104 67 Q108 63.500 112 67" fill="none"/>
+  <path d="M93 78 C90 102 92 120 80 128 C68 134 58 124 66 116 C71 111 78 115 75 120" fill="none" stroke-width="2.2"/>
+  <path d="M107 78 C105 100 103 116 92 125" fill="none" stroke-width="1.2"/>
+  <path d="M112 86 C124 90 128 100 123 108 C120 104 116 98 110 94" />
+  <path d="M82 104 C62 108 52 122 54 138 C56 146 66 144 70 138" fill="none"/>
+  <circle cx="58" cy="146" r="6.500"/>
+  <path d="M118 104 C138 106 150 116 152 128" fill="none"/>
+  <path d="M146 112 C150 104 158 104 160 112 C162 122 156 134 150 134 C144 134 143 120 146 112 Z"/>
+  <ellipse cx="100" cy="148" rx="35" ry="34"/>
+  <path d="M84 150 Q100 160 116 150" fill="none" stroke-width="1"/>
+  <path d="M56 178 C64 164 136 164 144 178 C152 192 130 198 100 198 C70 198 48 192 56 178 Z"/>
+  <path d="M72 184 C86 176 114 176 128 184" fill="none" stroke-width="1"/>
+  <path d="M40 204 C54 192 66 196 74 206 C84 196 92 196 100 208 C108 196 116 196 126 206 C134 196 146 192 160 204 C148 214 130 216 100 216 C70 216 52 214 40 204 Z"/>
+</g>
+</symbol>
   </defs>
 </svg>
 
@@ -255,48 +293,33 @@ input:focus, textarea:focus { outline: 2px solid var(--gold); outline-offset: 1p
 
 <!-- ================= INTRO ================= -->
 <div id="intro" role="dialog" aria-label="Wedding invitation of Megha and Parth">
-  <div class="pn l"></div><div class="pn r"></div>
+  <div class="pn l"><div class="in"><div class="art"><img src="img/intro.jpg" alt="" fetchpriority="high" width="820" height="1056"></div></div></div>
+  <div class="pn r"><div class="in"><div class="art"><img src="img/intro.jpg" alt="" fetchpriority="high" width="820" height="1056"></div></div></div>
   <div class="stars" id="stars" aria-hidden="true"></div>
   <div class="ic">
-    <div class="caps">We are getting married</div>
-    <div class="nm"><span class="script">Megha</span><span class="amp">&amp;</span><span class="script">Parth</span></div>
-    <div class="cam-stage" aria-hidden="true">
-      <div class="strip">
-        <div class="cp">Us, before the vows</div>
-        <div class="fr" data-o="0"><img src="img/cam1.jpg" alt="" class="on"><img src="img/cam2.jpg" alt=""><img src="img/cam3.jpg" alt=""><img src="img/cam4.jpg" alt=""><img src="img/cam5.jpg" alt=""></div>
-        <div class="fr" data-o="2"><img src="img/cam1.jpg" alt=""><img src="img/cam2.jpg" alt=""><img src="img/cam3.jpg" alt="" class="on"><img src="img/cam4.jpg" alt=""><img src="img/cam5.jpg" alt=""></div>
-      </div>
-      <svg class="cam" viewBox="0 0 160 150" aria-hidden="true">
-        <defs>
-          <linearGradient id="cb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EFE1DA"/><stop offset="1" stop-color="#D9C4BC"/></linearGradient>
-          <radialGradient id="lg" cx=".38" cy=".32" r=".8"><stop offset="0" stop-color="#5B6A86"/><stop offset=".45" stop-color="#1F2433"/><stop offset="1" stop-color="#0E0F15"/></radialGradient>
-        </defs>
-        <rect x="42" y="14" width="76" height="22" rx="8" fill="#C9B3AB"/>
-        <rect x="48" y="22" width="64" height="5" rx="2.500" fill="#2B2326"/>
-        <rect x="6" y="28" width="148" height="116" rx="22" fill="url(#cb)"/>
-        <rect x="6" y="28" width="148" height="116" rx="22" fill="none" stroke="#fff" stroke-opacity=".55"/>
-        <rect x="20" y="42" width="30" height="20" rx="6" fill="#FAF5F2" stroke="#CDBBB3"/>
-        <circle cx="36" cy="86" r="6" fill="#B9A49C"/><circle cx="36" cy="86" r="3.400" fill="#3B3236"/>
-        <circle cx="26" cy="124" r="5" fill="#C9B3AB"/>
-        <rect x="118" y="40" width="22" height="9" rx="4.500" fill="#C9B3AB"/>
-        <circle cx="94" cy="88" r="38" fill="#CDB8B0"/><circle cx="94" cy="88" r="33" fill="#EADBD4"/>
-        <circle cx="94" cy="88" r="27" fill="#2A2527"/><circle cx="94" cy="88" r="21" fill="url(#lg)"/>
-        <circle cx="94" cy="88" r="9" fill="#12141C"/>
-        <ellipse cx="85" cy="78" rx="7" ry="4.500" fill="#fff" fill-opacity=".5" transform="rotate(-30 85 78)"/>
-        <rect x="104" y="124" width="36" height="6" rx="3" fill="#C9B3AB"/>
-      </svg>
+    <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="ipet" id="ipet" aria-hidden="true"></div>
+    <div class="top">
+      <div class="caps rise" style="--d:.5s">We are getting married</div>
+      <div class="nm rise" style="--d:.8s"><span class="script n1">Megha</span><span class="weds">and</span><span class="script n2">Parth</span></div>
+      <div class="dts rise" style="--d:1.2s">3 &middot; 4 December 2026</div>
     </div>
-    <button class="seal" id="seal" aria-label="Break the seal to open the invitation"><span>M&amp;P</span></button>
-    <div class="tapl">Tap to open</div>
+    <div class="bot rise" style="--d:1.6s">
+      <div class="sealw"><i></i><i></i><button class="seal" id="seal" aria-label="Break the seal to open the invitation"><span>M&amp;P</span></button></div>
+      <div class="tapl">Tap to open</div>
+    </div>
   </div>
 </div>
 
 <!-- ================= PAGE ================= -->
 <main id="page">
 
-  <section class="band ivory" id="cover-band">
+  <section class="band covb" id="cover-band">
     <div class="cover" id="cover">
-      <img src="img/cover.jpg" alt="Megha laughing as Parth holds her hand in an old doorway" fetchpriority="high" width="720" height="1080">
+      <div class="cimg">
+        <img src="img/cover.jpg" alt="Illustration of Megha laughing as Parth holds her hand beside an old arched door" fetchpriority="high" width="720" height="1080" draggable="false">
+        <div class="cvm"><svg viewBox="0 0 200 222" role="img" aria-label="Lord Ganesha"><use href="#gan"/></svg></div>
+      </div>
       <div class="cv">
         <div class="caps">Together with their families</div>
         <h1>Megha</h1>
@@ -323,16 +346,18 @@ input:focus, textarea:focus { outline: 2px solid var(--gold); outline-offset: 1p
     </div>
   </section>
 
-  <section class="band ivory note" id="note">
+  <section class="band story" id="story">
     <div class="col">
-      <div class="caps rv">A little note from us</div>
-      <div class="paper rv">
-        <span class="pin" aria-hidden="true"></span>
-        <h2 class="script">Our invitation</h2>
-        <p>Two hearts, two families and one beautiful beginning. With joy in our hearts and your blessings by our side, we are ready to begin our forever. Come laugh with us, dance with us, and bless us as we take our seven steps together.</p>
-        <p class="by">&mdash; Megha &amp; Parth</p>
+      <div class="caps rv">Written in the stars</div>
+      <h2 class="script rv">Our Love Story</h2>
+      <div class="tale rv">
+        <p>It began with a quiet glance and a shared smile.</p>
+        <p>A thousand ordinary days later, two hearts had found their way home in each other.</p>
+        <p>Now, with our families&rsquo; blessings, we begin our forever. Come, be part of our next chapter.</p>
+        <p class="sg">Megha &amp; Parth</p>
       </div>
     </div>
+    <div class="sart rv"><img src="img/story.jpg" alt="Illustration of Megha and Parth walking hand in hand along a lake below an old fort" loading="lazy" width="960" height="640" draggable="false"></div>
   </section>
 
   <section class="band wine cel" id="events">
@@ -341,7 +366,7 @@ input:focus, textarea:focus { outline: 2px solid var(--gold); outline-offset: 1p
       <h2 class="script rv">Two days of joy</h2>
       <div class="cards">
         <article class="card rv">
-          <div class="ph"><img src="img/ev_haldi.jpg" alt="Parth garlanding Megha with jasmine flowers" loading="lazy" width="560" height="420"><span class="tag">Thursday</span></div>
+          <div class="ph"><img src="img/ev_haldi.jpg" alt="Megha and Parth in yellow outfits at their Haldi ceremony" loading="lazy" width="448" height="560" draggable="false"></div>
           <div class="cb">
             <h3 class="script" style="margin:0">Haldi</h3>
             <div class="day">Thursday, 3 December 2026</div>
@@ -352,7 +377,7 @@ input:focus, textarea:focus { outline: 2px solid var(--gold); outline-offset: 1p
           </div>
         </article>
         <article class="card rv">
-          <div class="ph"><img src="img/ev_sangeet.jpg" alt="Megha in a gold sequin gown with Parth against a city skyline at night" loading="lazy" width="560" height="420"><span class="tag">Thursday</span></div>
+          <div class="ph"><img src="img/ev_sangeet.jpg" alt="Megha and Parth at the Sangeet, with a glowing neon sign behind them" loading="lazy" width="448" height="560" draggable="false"></div>
           <div class="cb">
             <h3 class="script" style="margin:0">Sangeet</h3>
             <div class="day">Thursday, 3 December 2026</div>
@@ -363,7 +388,7 @@ input:focus, textarea:focus { outline: 2px solid var(--gold); outline-offset: 1p
           </div>
         </article>
         <article class="card rv">
-          <div class="ph"><img src="img/ev_wedding.jpg" alt="Megha in a red saree and Parth in a cream kurta at an old arched door" loading="lazy" width="560" height="420"><span class="tag">Friday</span></div>
+          <div class="ph"><img src="img/ev_wedding.jpg" alt="Megha and Parth at the sacred fire during the wedding rituals, wearing jasmine garlands" loading="lazy" width="448" height="560" draggable="false"></div>
           <div class="cb">
             <h3 class="script" style="margin:0">Wedding</h3>
             <div class="day">Friday, 4 December 2026</div>
@@ -374,7 +399,7 @@ input:focus, textarea:focus { outline: 2px solid var(--gold); outline-offset: 1p
           </div>
         </article>
         <article class="card rv">
-          <div class="ph"><img src="img/ev_reception.jpg" alt="The couple's clasped hands on a wooden table beside a glass" loading="lazy" width="560" height="420"><span class="tag">Friday</span></div>
+          <div class="ph"><img src="img/ev_reception.jpg" alt="Megha and Parth seated together at the reception under warm lights" loading="lazy" width="448" height="560" draggable="false"></div>
           <div class="cb">
             <h3 class="script" style="margin:0">Reception</h3>
             <div class="day">Friday, 4 December 2026</div>
@@ -405,22 +430,16 @@ input:focus, textarea:focus { outline: 2px solid var(--gold); outline-offset: 1p
   <section class="band wine glim" id="glimpses">
     <div class="col"><div class="caps rv">Special moments</div><h2 class="script rv">Little glimpses of us</h2></div>
     <div class="reel" aria-label="Photos of Megha and Parth, scrolling slowly"><div class="trk" style="--dur:110s">
-      <button class="pol" data-full="img/full/g1.jpg"><img data-src="img/g1.jpg" alt="Megha and Parth in an old doorway, Parth touching her chin" width="300" height="400"><span>Quiet smiles</span></button>
-      <button class="pol" data-full="img/full/g2.jpg"><img data-src="img/g2.jpg" alt="Megha and Parth walking hand in hand beside a lake and fort" width="300" height="400"><span>Hand in hand</span></button>
-      <button class="pol" data-full="img/full/g3.jpg"><img data-src="img/g3.jpg" alt="Megha resting her head on Parth's chest" width="300" height="400"><span>Heart to heart</span></button>
-      <button class="pol" data-full="img/full/g4.jpg"><img data-src="img/g4.jpg" alt="Megha and Parth smiling at each other under a tree" width="300" height="400"><span>Stolen glances</span></button>
-      <button class="pol" data-full="img/full/g5.jpg"><img data-src="img/g5.jpg" alt="Parth kissing Megha's forehead with a sunflower and a book" width="300" height="400"><span>Home in you</span></button>
-      <button class="pol" data-full="img/full/g6.jpg"><img data-src="img/g6.jpg" alt="Megha and Parth reading together on a hill" width="300" height="400"><span>Lost in a book</span></button>
-      <button class="pol" data-full="img/full/g7.jpg"><img data-src="img/g7.jpg" alt="Megha and Parth reading on a wooden deck" width="300" height="400"><span>Our little world</span></button>
-    </div></div>
-    <div class="reel rev" aria-label="More photos of Megha and Parth, scrolling slowly"><div class="trk" style="--dur:120s">
-      <button class="pol" data-full="img/full/g8.jpg"><img data-src="img/g8.jpg" alt="Megha and Parth walking down an old lane" width="300" height="400"><span>Walks with you</span></button>
-      <button class="pol" data-full="img/full/g9.jpg"><img data-src="img/g9.jpg" alt="Megha and Parth holding hands on a wooden deck" width="300" height="400"><span>Face to face</span></button>
-      <button class="pol" data-full="img/full/g10.jpg"><img data-src="img/g10.jpg" alt="Megha and Parth seen from behind beside a calm lake" width="300" height="400"><span>Still waters</span></button>
-      <button class="pol" data-full="img/full/g11.jpg"><img data-src="img/g11.jpg" alt="Parth fastening Megha's anklet" width="300" height="400"><span>Little details</span></button>
-      <button class="pol" data-full="img/full/g12.jpg"><img data-src="img/g12.jpg" alt="The couple dressed up against city lights at night" width="300" height="400"><span>City lights</span></button>
-      <button class="pol" data-full="img/full/g13.jpg"><img data-src="img/g13.jpg" alt="Parth on wooden steps with Megha above him" width="300" height="400"><span>Finding you</span></button>
-      <button class="pol" data-full="img/full/g14.jpg"><img data-src="img/g14.jpg" alt="Megha and Parth with pigeons flying above a fort" width="300" height="400"><span>Wings &amp; wishes</span></button>
+      <div class="pol"><img data-src="img/s1.jpg" alt="Megha and Parth sitting close beside a lake" width="420" height="420" draggable="false"><span>Quiet moments</span></div>
+      <div class="pol"><img data-src="img/s2.jpg" alt="Megha resting her head on Parth by the lake" width="420" height="420" draggable="false"><span>Side by side</span></div>
+      <div class="pol"><img data-src="img/s3.jpg" alt="Parth tucking a flower garland behind Megha's ear" width="420" height="420" draggable="false"><span>Heart to heart</span></div>
+      <div class="pol"><img data-src="img/s4.jpg" alt="Megha and Parth by an old carved door" width="420" height="420" draggable="false"><span>Where it began</span></div>
+      <div class="pol"><img data-src="img/s5.jpg" alt="Megha and Parth sitting together beside the lake" width="420" height="420" draggable="false"><span>Hand in hand</span></div>
+      <div class="pol"><img data-src="img/s6.jpg" alt="Megha and Parth on a rooftop above the city at night" width="420" height="420" draggable="false"><span>City lights</span></div>
+      <div class="pol"><img data-src="img/s7.jpg" alt="Megha and Parth reading together with a sunflower" width="420" height="420" draggable="false"><span>Our little world</span></div>
+      <div class="pol"><img data-src="img/s8.jpg" alt="Two hands held beside a glass on a wooden table" width="420" height="420" draggable="false"><span>Cheers to forever</span></div>
+      <div class="pol"><img data-src="img/s9.jpg" alt="Megha and Parth reading on a hilltop" width="420" height="420" draggable="false"><span>Lost in a book</span></div>
+      <div class="pol"><img data-src="img/s10.jpg" alt="Megha and Parth on a rooftop above the city lights" width="420" height="420" draggable="false"><span>Golden hour</span></div>
     </div></div>
   </section>
 
@@ -470,7 +489,6 @@ input:focus, textarea:focus { outline: 2px solid var(--gold); outline-offset: 1p
   </footer>
 </main>
 
-<div class="lb" id="lb" hidden><button id="lbx" aria-label="Close photo">&times;</button><img id="lbi" alt=""></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <canvas id="fx" aria-hidden="true"></canvas>
 <button id="music" aria-pressed="false" aria-label="Play background music">
@@ -494,14 +512,11 @@ input:focus, textarea:focus { outline: 2px solid var(--gold); outline-offset: 1p
     var s = $('#stars'); h = '';
     for (i = 0; i < 26; i++) h += '<i style="left:' + (Math.random() * 100).toFixed(1) + '%;top:' + (Math.random() * 100).toFixed(1) + '%;animation-delay:' + (Math.random() * 3.6).toFixed(2) + 's"></i>';
     s.innerHTML = h;
+    var pe = $('#ipet'), C = ['#F1D9B0', '#F4A62A', '#FFD066', '#E7CE8F', '#FBF3E9']; h = '';
+    for (i = 0; i < 16; i++) h += '<i style="left:' + (Math.random() * 100).toFixed(1) + '%;--s:' + (7 + Math.random() * 7).toFixed(1) + 'px;--t:' + (10 + Math.random() * 9).toFixed(1) + 's;--d:' + (-Math.random() * 16).toFixed(1) + 's;--x:' + ((Math.random() - .5) * 120).toFixed(0) + 'px;--c:' + C[i % C.length] + '"></i>';
+    pe.innerHTML = h;
   })();
 
-  /* ---------- camera photo strip cycles through the pre-wedding shots ---------- */
-  $$('.fr').forEach(function (fr) {
-    var imgs = $$('img', fr), n = imgs.length, k = +fr.getAttribute('data-o');
-    if (reduce) return;
-    setInterval(function () { imgs[k % n].classList.remove('on'); k++; imgs[k % n].classList.add('on'); }, 3200);
-  });
 })();
 </script>
 <script>
@@ -620,24 +635,10 @@ window.__burst=burst;window.__rain=rain;window.__music=Music;
     var lio = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { loadReels(); lio.disconnect(); } }, { rootMargin: '900px 0px' });
     lio.observe($('#glimpses'));
   } else { loadReels(); }
-  $$('.reel').forEach(function (r) {
-    var tm, hold = function () { r.classList.add('hold'); clearTimeout(tm); }, rel = function () { clearTimeout(tm); tm = setTimeout(function () { r.classList.remove('hold'); }, 1800); };
-    r.addEventListener('pointerdown', hold); r.addEventListener('pointerup', rel); r.addEventListener('pointercancel', rel);
-  });
 
-  /* ---------- lightbox loads the larger photo only on tap ---------- */
-  var lb = $('#lb'), lbi = $('#lbi'), last = null;
-  $$('.reel').forEach(function (r) {
-    r.addEventListener('click', function (e) {
-      var b = e.target.closest('.pol'); if (!b) return;
-      last = b; lbi.src = $('img', b).src; lbi.alt = $('img', b).alt;
-      var big = new Image(); big.onload = function () { if (!lb.hidden) lbi.src = big.src; }; big.src = b.getAttribute('data-full');
-      lb.hidden = false; requestAnimationFrame(function () { lb.classList.add('on'); }); $('#lbx').focus();
-    });
-  });
-  function closeLb() { lb.classList.remove('on'); setTimeout(function () { lb.hidden = true; if (last) last.focus(); }, 350); }
-  lb.addEventListener('click', closeLb);
-  addEventListener('keydown', function (e) { if (e.key === 'Escape' && !lb.hidden) closeLb(); });
+  /* keep the photos from being dragged or saved with a long-press */
+  document.addEventListener('contextmenu', function (e) { if (e.target.closest && e.target.closest('img, .pol, .cover')) e.preventDefault(); });
+  document.addEventListener('dragstart', function (e) { if (e.target.tagName === 'IMG') e.preventDefault(); });
 
   /* ---------- RSVP ---------- */
   var EVS = [['Haldi', 'Thu 3 Dec, from 10 AM'], ['Sangeet', 'Thu 3 Dec, from 7 PM'], ['Wedding (Pheras)', 'Fri 4 Dec, from 11 AM'], ['Reception', 'Fri 4 Dec, 7 PM']];
