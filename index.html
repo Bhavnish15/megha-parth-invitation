@@ -103,24 +103,35 @@ html.js .rv:not(.in) { opacity: .25; transform: translateY(22px); }
 .tapl { font-style: italic; font-size: 20px; color: #F6E6C6; letter-spacing: .06em; text-shadow: 0 1px 12px rgba(20, 4, 10, .9); animation: tapp 2.4s ease-in-out infinite; }
 @keyframes tapp { 50% { opacity: .55; } }
 @media (max-height: 720px) { .sealw, .seal { width: 84px; height: 84px; } .seal span { font-size: 32px; } .top { gap: 6px; } }
+/* intro v10: photo full-bleed, no overlays; text sits on the gate */
+.pn { background: #D6B98C; }
+.pn .in::after { display: none; }
+.art { left: 50%; top: 0; bottom: 0; width: min(100%, calc(100dvh * .4605)); height: 100%; transform: translateX(-50%); -webkit-mask-image: none; mask-image: none; }
+.art img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; filter: brightness(.9); }
+.art::after { display: none; }
+.stars { display: none; }
+.ic { justify-content: center; gap: clamp(22px, 4.5dvh, 40px); padding-top: calc(env(safe-area-inset-top, 0px) + 9dvh); padding-bottom: 0; }
+.ic .caps, .dts { text-shadow: 0 1px 2px rgba(30, 10, 4, .95), 0 2px 10px rgba(30, 10, 4, .85), 0 0 22px rgba(30, 10, 4, .6); }
+.ic .caps { color: #FFF3DC; }
+.dts { color: #FFF3DC; }
+.tapl { color: #5A1E2E; font-weight: 500; text-shadow: 0 1px 8px rgba(255, 243, 220, .9); }
+.nm .script { filter: drop-shadow(0 1px 2px rgba(30, 10, 4, .8)) drop-shadow(0 3px 14px rgba(30, 10, 4, .65)); }
+.weds { color: #F6DE9A; text-shadow: 0 1px 3px rgba(30, 10, 4, .85), 0 2px 12px rgba(30, 10, 4, .7); }
+
 /* ============ COVER ============ */
 .band.covb { background: #EBBF85; }
-.cover { max-width: 440px; margin: 0 auto; padding: 0 0 4px; }
+.cover { position: relative; max-width: 440px; margin: 0 auto; line-height: 0; }
 .cimg { position: relative; line-height: 0; }
 .cimg img { display: block; width: 100%; height: auto; opacity: 0; transform: translateY(16px); transition: opacity 1.2s ease .1s, transform 1.2s cubic-bezier(.2, .7, .2, 1) .1s; }
 .go .cimg img { opacity: 1; transform: none; }
-.cvm { position: absolute; top: 12px; left: 50%; width: 50px; height: 50px; margin-left: -25px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 40% 28%, #6A1B33, #35091A); box-shadow: 0 0 0 1.5px #E7CE8F, 0 6px 14px rgba(40, 8, 20, .35); }
-.cvm svg { width: 30px; height: auto; margin-top: 2px; }
-.cv { display: grid; justify-items: center; gap: 8px; text-align: center; padding: 20px 20px 34px; }
-.cv .caps { font-size: 11.5px; letter-spacing: .3em; color: #5E4129; }
-.cv h1 { margin: 0; font-weight: 500; text-transform: uppercase; letter-spacing: .2em; font-size: clamp(30px, 9.6vw, 44px); line-height: 1.12; color: var(--wine); padding-left: .2em; }
-.cv .and { display: flex; align-items: center; gap: 12px; width: 100%; }
+.cvm { position: absolute; top: 12px; left: 50%; width: 46px; height: 46px; margin-left: -23px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 40% 28%, #6A1B33, #35091A); box-shadow: 0 0 0 1.5px #E7CE8F, 0 6px 14px rgba(40, 8, 20, .35); }
+.cvm svg { width: 28px; height: auto; margin-top: 2px; }
+.cv { position: absolute; left: 0; right: 0; bottom: 0; top: 75.5%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; text-align: center; padding: 0 20px 6px; line-height: 1.2; }
+.cv .caps { font-size: 11px; letter-spacing: .3em; color: #5E4129; }
+.cv h1 { margin: 0; font-weight: 500; text-transform: uppercase; letter-spacing: .2em; font-size: clamp(27px, 8.4vw, 38px); line-height: 1.1; color: var(--wine); padding-left: .2em; }
+.cv .and { display: flex; align-items: center; gap: 12px; width: 100%; max-width: 260px; }
 .cv .and::before, .cv .and::after { content: ""; flex: 1; height: 1px; background: #8A6420; opacity: .6; }
-.cv .and span { font-family: var(--f-script); font-size: 42px; line-height: .9; color: var(--wine); }
-.cv .inv { margin-top: 4px; }
-.cue { margin-top: 10px; width: 20px; height: 32px; border: 1.5px solid #8A6420; border-radius: 12px; position: relative; opacity: .8; }
-.cue::after { content: ""; position: absolute; left: 50%; top: 6px; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 2px; background: #8A6420; animation: cue 1.8s ease-in-out infinite; }
-@keyframes cue { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(12px); } }
+.cv .and span { font-family: var(--f-script); font-size: 36px; line-height: .9; color: var(--wine); }
 
 /* ============ BLESSING ============ */
 .bless { padding-block: 54px 58px; text-align: center; }
@@ -140,15 +151,14 @@ html.js .rv:not(.in) { opacity: .25; transform: translateY(22px); }
 .dt { font-weight: 500; letter-spacing: .32em; text-transform: uppercase; font-size: 15px; color: var(--gold-hi); margin-top: 4px; }
 
 /* ============ STORY ============ */
-.story { background: #FCD69C; color: #4A2A24; padding-block: 52px 0; overflow: hidden; }
-.story .col { text-align: left; }
-.story .caps { font-size: 11.5px; letter-spacing: .3em; color: #6B4A1E; }
-.story h2 { font-size: clamp(46px, 13.5vw, 56px); color: var(--wine); margin: 4px 0 12px; white-space: nowrap; }
-.tale { max-width: 29ch; }
-.tale p { margin: 0 0 12px; font-style: italic; font-size: 19px; line-height: 1.42; color: #4A2A24; }
-.tale .sg { font-family: var(--f-script); font-style: normal; font-size: 30px; color: var(--wine); margin: 4px 0 0; }
-.sart { max-width: 480px; margin: -6px auto 0; line-height: 0; }
-.sart img { display: block; width: 100%; height: auto; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 16%), linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); -webkit-mask-composite: source-in; mask-image: linear-gradient(180deg, transparent 0, #000 16%), linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); mask-composite: intersect; }
+.story { background: #FCD69C; color: #4A2A24; overflow: hidden; }
+.sbox { position: relative; max-width: 480px; margin: 0 auto; line-height: 0; }
+.sbox img { display: block; width: 100%; height: auto; }
+.stx { position: absolute; left: 0; top: 0; padding: 32px 16px 0 max(18px, 5vw); max-width: 70%; text-align: left; line-height: 1.3; }
+.stx .caps { font-size: 11px; letter-spacing: .3em; color: #6B4A1E; }
+.stx h2 { font-size: clamp(42px, 12.6vw, 54px); color: var(--wine); margin: 2px 0 10px; white-space: nowrap; line-height: 1.05; }
+.stx p { margin: 0 0 9px; font-style: italic; font-size: 17.5px; line-height: 1.38; color: #4A2A24; }
+.stx .sg { font-family: var(--f-script); font-style: normal; font-size: 28px; color: var(--wine); margin: 2px 0 0; }
 
 /* ============ CELEBRATIONS ============ */
 .cel { padding-block: 58px 62px; text-align: center; }
@@ -183,7 +193,7 @@ html.js .rv:not(.in) { opacity: .25; transform: translateY(22px); }
 .pol { position: relative; flex: none; width: 280px; margin-right: 18px; padding: 6px 6px 38px; border-radius: 3px; background: #FBF6EC; box-shadow: 0 14px 30px rgba(0, 0, 0, .42); rotate: -2.4deg; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 .pol:nth-child(even) { rotate: 2.2deg; translate: 0 12px; }
 .pol img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: contain; background: #EFE6D4; border-radius: 2px; pointer-events: none; -webkit-user-drag: none; }
-.pol span { position: absolute; left: 8px; right: 8px; bottom: 8px; font-family: var(--f-hand); font-size: 21px; line-height: 1.1; color: #5A3A3F; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pol span { position: absolute; left: 6px; right: 6px; bottom: 0; height: 38px; display: flex; align-items: center; justify-content: center; font-family: var(--f-hand); font-size: 21px; line-height: 1; color: #5A3A3F; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .reel { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent); mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent); }
 .trk { display: flex; width: max-content; padding: 26px 0 40px; animation: marq var(--dur, 130s) linear infinite; will-change: transform; }
 @keyframes marq { to { transform: translateX(-50%); } }
@@ -293,8 +303,8 @@ input:focus, textarea:focus { outline: 2px solid var(--gold); outline-offset: 1p
 
 <!-- ================= INTRO ================= -->
 <div id="intro" role="dialog" aria-label="Wedding invitation of Megha and Parth">
-  <div class="pn l"><div class="in"><div class="art"><img src="img/intro.jpg" alt="" fetchpriority="high" width="820" height="1056"></div></div></div>
-  <div class="pn r"><div class="in"><div class="art"><img src="img/intro.jpg" alt="" fetchpriority="high" width="820" height="1056"></div></div></div>
+  <div class="pn l"><div class="in"><div class="art"><img src="img/intro.jpg" alt="" fetchpriority="high" width="720" height="1587"></div></div></div>
+  <div class="pn r"><div class="in"><div class="art"><img src="img/intro.jpg" alt="" fetchpriority="high" width="720" height="1587"></div></div></div>
   <div class="stars" id="stars" aria-hidden="true"></div>
   <div class="ic">
     <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
@@ -319,14 +329,13 @@ input:focus, textarea:focus { outline: 2px solid var(--gold); outline-offset: 1p
       <div class="cimg">
         <img src="img/cover.jpg" alt="Illustration of Megha laughing as Parth holds her hand beside an old arched door" fetchpriority="high" width="720" height="1080" draggable="false">
         <div class="cvm"><svg viewBox="0 0 200 222" role="img" aria-label="Lord Ganesha"><use href="#gan"/></svg></div>
-      </div>
-      <div class="cv">
+        <div class="cv">
         <div class="caps">Together with their families</div>
         <h1>Megha</h1>
         <div class="and"><span>and</span></div>
         <h1>Parth</h1>
         <div class="caps inv">Invite you to join their wedding</div>
-        <div class="cue" aria-hidden="true"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -347,17 +356,16 @@ input:focus, textarea:focus { outline: 2px solid var(--gold); outline-offset: 1p
   </section>
 
   <section class="band story" id="story">
-    <div class="col">
-      <div class="caps rv">Written in the stars</div>
-      <h2 class="script rv">Our Love Story</h2>
-      <div class="tale rv">
+    <div class="sbox">
+      <img src="img/story.jpg" alt="Illustration of Megha and Parth walking hand in hand along a lake below an old fort" loading="lazy" width="960" height="1260" draggable="false">
+      <div class="stx rv">
+        <div class="caps">Written in the stars</div>
+        <h2 class="script">Our Love Story</h2>
         <p>It began with a quiet glance and a shared smile.</p>
         <p>A thousand ordinary days later, two hearts had found their way home in each other.</p>
-        <p>Now, with our families&rsquo; blessings, we begin our forever. Come, be part of our next chapter.</p>
         <p class="sg">Megha &amp; Parth</p>
       </div>
     </div>
-    <div class="sart rv"><img src="img/story.jpg" alt="Illustration of Megha and Parth walking hand in hand along a lake below an old fort" loading="lazy" width="960" height="640" draggable="false"></div>
   </section>
 
   <section class="band wine cel" id="events">
@@ -429,17 +437,16 @@ input:focus, textarea:focus { outline: 2px solid var(--gold); outline-offset: 1p
 
   <section class="band wine glim" id="glimpses">
     <div class="col"><div class="caps rv">Special moments</div><h2 class="script rv">Little glimpses of us</h2></div>
-    <div class="reel" aria-label="Photos of Megha and Parth, scrolling slowly"><div class="trk" style="--dur:150s">
+    <div class="reel" aria-label="Photos of Megha and Parth, scrolling slowly"><div class="trk" style="--dur:135s">
       <div class="pol"><img data-src="img/s1.jpg" alt="Megha and Parth by an old carved door" width="540" height="540" draggable="false"><span>Where it began</span></div>
       <div class="pol"><img data-src="img/s2.jpg" alt="Megha and Parth on a rooftop above the city at night" width="540" height="540" draggable="false"><span>City lights</span></div>
-      <div class="pol"><img data-src="img/s3.jpg" alt="Megha resting her head on Parth by the lake" width="540" height="540" draggable="false"><span>Side by side</span></div>
+      <div class="pol"><img data-src="img/s3.jpg" alt="Megha and Parth sitting close beside a lake" width="540" height="540" draggable="false"><span>Quiet moments</span></div>
       <div class="pol"><img data-src="img/s4.jpg" alt="Megha and Parth reading together with a sunflower" width="540" height="540" draggable="false"><span>Our little world</span></div>
-      <div class="pol"><img data-src="img/s5.jpg" alt="Megha and Parth sitting close beside a lake" width="540" height="540" draggable="false"><span>Quiet moments</span></div>
-      <div class="pol"><img data-src="img/s6.jpg" alt="Megha and Parth on a rooftop above the city lights" width="540" height="540" draggable="false"><span>Golden hour</span></div>
-      <div class="pol"><img data-src="img/s7.jpg" alt="Megha leaning on Parth beside the lake with a palace in the water" width="540" height="540" draggable="false"><span>Heart to heart</span></div>
-      <div class="pol"><img data-src="img/s8.jpg" alt="Megha and Parth reading together on a hilltop with a sunflower" width="540" height="540" draggable="false"><span>Lost in a book</span></div>
-      <div class="pol"><img data-src="img/s9.jpg" alt="Megha and Parth sitting together beside the lake" width="540" height="540" draggable="false"><span>Hand in hand</span></div>
-      <div class="pol"><img data-src="img/s10.jpg" alt="Two hands held beside a glass on a wooden table" width="540" height="540" draggable="false"><span>Cheers to forever</span></div>
+      <div class="pol"><img data-src="img/s5.jpg" alt="Megha leaning on Parth beside the lake with a palace in the water" width="540" height="540" draggable="false"><span>Heart to heart</span></div>
+      <div class="pol"><img data-src="img/s6.jpg" alt="Megha and Parth reading together on a hilltop with a sunflower" width="540" height="540" draggable="false"><span>Lost in a book</span></div>
+      <div class="pol"><img data-src="img/s7.jpg" alt="Megha and Parth sitting together beside the lake" width="540" height="540" draggable="false"><span>Hand in hand</span></div>
+      <div class="pol"><img data-src="img/s8.jpg" alt="Two hands held beside a glass on a wooden table" width="540" height="540" draggable="false"><span>Cheers to forever</span></div>
+      <div class="pol"><img data-src="img/s9.jpg" alt="Megha and Parth walking hand in hand along the lake below the old fort" width="540" height="540" draggable="false"><span>Walking together</span></div>
     </div></div>
   </section>
 
@@ -458,10 +465,10 @@ input:focus, textarea:focus { outline: 2px solid var(--gold); outline-offset: 1p
           </div></div>
         <div class="field" id="evField"><span class="lab" id="l-ev">Joining us for <small>(pick all that apply)</small></span>
           <div class="chips" role="group" aria-labelledby="l-ev">
-            <label><input type="checkbox" name="ev" value="0" checked><span>3 Dec morning &middot; Haldi</span></label>
-            <label><input type="checkbox" name="ev" value="1" checked><span>3 Dec evening &middot; Sangeet</span></label>
-            <label><input type="checkbox" name="ev" value="2" checked><span>4 Dec morning &middot; Wedding</span></label>
-            <label><input type="checkbox" name="ev" value="3" checked><span>4 Dec evening &middot; Reception</span></label>
+            <label><input type="checkbox" name="ev" value="0"><span>3 Dec morning &middot; Haldi</span></label>
+            <label><input type="checkbox" name="ev" value="1"><span>3 Dec evening &middot; Sangeet</span></label>
+            <label><input type="checkbox" name="ev" value="2"><span>4 Dec morning &middot; Wedding</span></label>
+            <label><input type="checkbox" name="ev" value="3"><span>4 Dec evening &middot; Reception</span></label>
           </div></div>
         <div class="field" id="gField"><span class="lab" id="l-g">Number of guests</span>
           <div class="stepper" role="group" aria-labelledby="l-g"><button type="button" id="gm" aria-label="One fewer guest">&minus;</button><output id="gc" aria-live="polite">1</output><button type="button" id="gp" aria-label="One more guest">+</button></div></div>
